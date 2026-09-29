@@ -8,12 +8,59 @@
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
   background-color: var(--background-color);
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: 0;
+  padding:8px
+}
+
+.cards .cards-card-body h1,
+.cards .cards-card-body h2,
+.cards .cards-card-body h3,
+.cards .cards-card-body h4,
+.cards .cards-card-body h5,
+.cards .cards-card-body h6 {
+  margin: 0 0 8px;
+  font-size: var(--body-font-size-m);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.cards .cards-card-body p {
+  margin: 0;
+  overflow: hidden;
+  color: var(--dark-color);
+  font-size: var(--body-font-size-xs);
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cards .cards-card-body p.button-wrapper {
+  margin-top: 8px;
+  overflow: visible;
+  white-space: normal;
+}
+
+.cards .cards-card-body a.button {
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  padding: 0;
+  color: var(--text-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cards .cards-card-body a.button:hover,
+.cards .cards-card-body a.button:focus-visible {
+  background-color: transparent;
+  color: var(--dark-color);
+  text-decoration: underline;
 }
 
 .cards .cards-card-image {

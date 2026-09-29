@@ -16,5 +16,22 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
+  // classify each row defensively: a list of links is the nav row, a row
+  // with icons is the social row, everything else stays the legal row
+  const topRows = document.createElement('div');
+  topRows.className = 'footer-top';
+  [...footer.children].forEach((row) => {
+    if (row.querySelector('.icon')) {
+      row.classList.add('footer-social');
+      topRows.append(row);
+    } else if (row.querySelector('ul')) {
+      row.classList.add('footer-links');
+      topRows.append(row);
+    } else {
+      row.classList.add('footer-legal');
+    }
+  });
+  if (topRows.hasChildNodes()) footer.prepend(topRows);
+
   block.append(footer);
 }

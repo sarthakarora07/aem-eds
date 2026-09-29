@@ -18,6 +18,10 @@
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
+  --brand-accent-color: #ffea00;
+  --brand-accent-hover-color: #e6d200;
+  --dark-theme-background-color: #202020;
+  --dark-theme-text-color: #ebebeb;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -37,7 +41,7 @@
   --heading-font-size-xs: 22px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 130px;
 }
 
 /* fallback fonts */
@@ -199,18 +203,22 @@ button.button:disabled {
 
 a.button.primary,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+  border-color: var(--brand-accent-color);
+  border-radius: 0;
+  background-color: var(--brand-accent-color);
+  color: var(--text-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 a.button.primary:hover,
 a.button.primary:focus-visible,
 button.button.primary:hover,
 button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
+  border-color: var(--brand-accent-hover-color);
+  background-color: var(--brand-accent-hover-color);
+  color: var(--text-color);
 }
 
 a.button.primary[aria-disabled="true"],
@@ -321,5 +329,5 @@ main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
-  padding: 40px 0;
+  
 }

@@ -124,11 +124,24 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
+  const classes = ['brand', 'sections', 'tools', 'utility'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
+
+  // optional utility bar (e.g. sign in / language) rendered above the main nav
+  const navUtility = nav.querySelector('.nav-utility');
+
+  const searchIcon = nav.querySelector('.nav-tools .icon-search');
+  if (searchIcon) {
+    const searchWrapper = searchIcon.closest('p');
+    const search = document.createElement('div');
+    search.className = 'nav-search';
+    search.innerHTML = '<input type="search" placeholder="Search" aria-label="Search">';
+    search.prepend(searchIcon);
+    searchWrapper.replaceWith(search);
+  }
 
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
@@ -166,6 +179,7 @@ export default async function decorate(block) {
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
+  if (navUtility) navWrapper.append(navUtility);
   navWrapper.append(nav);
   block.append(navWrapper);
 }

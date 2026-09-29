@@ -15,7 +15,7 @@ header nav {
   align-items: center;
   gap: 0 24px;
   margin: auto;
-  max-width: 1248px;
+  max-width: 1400px;
   height: var(--nav-height);
   padding: 0 24px;
   font-family: var(--body-font-family);
@@ -32,20 +32,29 @@ header nav[aria-expanded='true'] {
 
 @media (width >= 900px) {
   header .nav-wrapper {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid var(--light-color);
   }
 
   header nav {
     display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
+    justify-content: flex-start;
+    gap: 0;
+    max-width: 1400px;
+    padding: 0 48px;
   }
 
   header nav[aria-expanded='true'] {
     min-height: 0;
     overflow: visible;
+  }
+}
+
+@media (width >= 1024px) {
+  header {
+    --nav-height: 200px;
   }
 }
 
@@ -143,9 +152,18 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 header .nav-brand {
   grid-area: brand;
   flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
+  font-size: var(--heading-font-size-l);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   line-height: 1;
+  margin-right: 352px;
+}
+
+@media (width >= 900px) {
+  header .nav-brand {
+    font-size: var(--heading-font-size-xl);
+  }
 }
 
 header nav .nav-brand img {
@@ -190,16 +208,32 @@ header nav .nav-sections ul > li > ul > li {
     display: block;
     visibility: visible;
     white-space: nowrap;
+    margin-left: auto;
   }
 
   header nav[aria-expanded='true'] .nav-sections {
     align-self: unset;
   }
 
+  header nav .nav-sections .default-content-wrapper > ul > li {
+    flex: 0 1 auto;
+    position: relative;
+    padding: 15px 20px;
+    text-transform: uppercase;
+    font-size: var(--body-font-size-xs);
+    letter-spacing: 0.03em;
+    font-weight: 600;
+  }
+
   header nav .nav-sections .nav-drop {
     position: relative;
-    padding-right: 16px;
+    padding-right: 28px;
     cursor: pointer;
+  }
+
+  header nav .nav-sections .nav-drop:hover,
+  header nav .nav-sections .nav-drop[aria-expanded='true'] {
+    background-color: var(--light-color);
   }
 
   header nav .nav-sections .nav-drop::after {
@@ -224,13 +258,8 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
+    gap: 0;
     margin: 0;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul {
@@ -241,32 +270,97 @@ header nav .nav-sections ul > li > ul > li {
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
     display: block;
     position: absolute;
-    left: -24px;
+    left: 0;
     width: 200px;
-    top: 150%;
+    top: calc(100% + 8px);
     padding: 16px;
-    background-color: var(--light-color);
+    border-radius: 6px;
+    background-color: var(--background-color);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 15%);
     white-space: initial;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
     padding: 8px 0;
+    text-transform: none;
   }
 }
 
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+header nav .nav-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+header nav .nav-search .icon {
+  position: absolute;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+header nav .nav-search input {
+  height: 40px;
+  width: 140px;
+  border: 0;
+  border-radius: 2px;
+  padding: 0 12px 0 36px;
+  background-color: var(--light-color);
+  color: var(--text-color);
+  font: inherit;
+  font-size: var(--body-font-size-xs);
+}
+
+header nav .nav-search input::placeholder {
+  text-transform: uppercase;
+  color: var(--dark-color);
+}
+
+header nav .nav-search input:focus {
+  outline: 1px solid var(--text-color);
+}
+
+@media (width >= 900px) {
+  header nav .nav-tools {
+    margin-left: 8px;
+  }
+}
+
+/* utility bar */
+header .nav-utility {
+  display: none;
+}
+
+@media (width >= 900px) {
+  header .nav-utility {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    height: 25px;
+    padding: 0 48px;
+    background-color: var(--dark-theme-background-color);
+    color: var(--dark-theme-text-color);
+    font-size: var(--body-font-size-xs);
+    text-transform: uppercase;
+  }
+
+  header .nav-utility a:any-link {
+    color: currentcolor;
+  }
+
+  header .nav-utility ul {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 }
